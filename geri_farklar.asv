@@ -1,0 +1,20 @@
+function [y_num, x_num] = geri_farklar(x0, y0, h, N)
+% y'(x) = f_x(x) ve y(x0) = y0 ile verilen denklemin geri farklar ile cozumu.
+%
+% x0 ve y0, baslangic degeri icin kullanilan y(x0)=y0
+% h: adim araligi
+% N: adim sayisi 
+% y_num: geri farkli ile elde edilen cozum
+% x_num: elde edilen cozumun tanimlandigi x degerleri 
+% ornek:
+% >> [y_num, x_num] = geri_farklar(0,1,0.1,100);
+
+x_num = x0:h:x0 + N*h;
+y_num = zeros(size(x_num));
+y_num(1) = y0;
+
+for ii = N:-1:1
+    y_num(ii - 1) = y_num(ii) - h * f_x(x_num(ii)) ;
+end
+
+end
